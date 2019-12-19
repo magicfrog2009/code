@@ -28,7 +28,7 @@ private:
             
             if(A[p-1] < A[j-1])
             {
-                int tmp = A[p-1];
+                T tmp = A[p-1];
                 A[p-1] = A[j-1];
                 A[j-1] = tmp;
 
@@ -58,7 +58,7 @@ private:
         int ssize = A.size();
         do
         {
-            int tmp = A[ssize-1];
+            T tmp = A[ssize-1];
             A[ssize-1] = A[0];
             A[0] = tmp;
             ssize--;
