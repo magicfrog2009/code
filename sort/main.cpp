@@ -9,6 +9,7 @@
 #include "BubbleSort.h"
 #include "FastSort.h"
 #include "SelectSort.h"
+#include "MergeSort.h"
 
 
 int main(int argc, char** argv)
@@ -24,7 +25,8 @@ int main(int argc, char** argv)
     // std::unique_ptr<SortBase<int>> sort {new DivInsertSort<int>};
     // std::unique_ptr<SortBase<int>> sort {new BubbleSort<int>};
     // std::unique_ptr<SortBase<int>> sort {new FastSort<int>};
-    std::unique_ptr<SortBase<int>> sort {new SelectSort<int>};
+    // std::unique_ptr<SortBase<int>> sort {new SelectSort<int>};
+    std::unique_ptr<SortBase<int>> sort {new MergeSort<int>};
 
     sort->Sort(Array);
 
