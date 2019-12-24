@@ -1,16 +1,16 @@
 /*
- * @lc app=leetcode.cn id=8 lang=cpp
+ * @lc app=leetcode.cn id=8 lang=c
  *
  * [8] 字符串转换整数 (atoi)
  *
  * https://leetcode-cn.com/problems/string-to-integer-atoi/description/
  *
  * algorithms
- * Medium (18.65%)
- * Likes:    489
+ * Medium (18.68%)
+ * Likes:    496
  * Dislikes: 0
- * Total Accepted:    92.2K
- * Total Submissions: 494.6K
+ * Total Accepted:    94.1K
+ * Total Submissions: 503.4K
  * Testcase Example:  '"42"'
  *
  * 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
@@ -70,11 +70,56 @@
  */
 
 // @lc code=start
-class Solution {
-public:
-    int myAtoi(string str) {
-        
+
+
+int myAtoi(char * str){
+    long int number = 0;
+    long int sign = 1;
+
+    while(*str)
+    {
+        if(*str == ' ')
+        {
+            str++;
+            continue;
+        }
+        else
+            break;
     }
-};
+
+    if(*str == '-')
+    {
+        str++;
+        sign = -1;
+    }
+    else if(*str == '+')
+    {
+        str++;
+        sign = 1;
+    }
+
+    while(*str)
+    {
+        if(*str >= '0' && *str <= '9')
+        {
+            number = number*10 + *str-'0';
+            if(number > INT32_MAX)
+                break;
+            str++;
+        }
+        else
+            break;
+    }
+    if(number*sign > INT32_MAX)
+        return INT32_MAX;
+    else if(number*sign < INT32_MIN)
+        return INT32_MIN;
+    else
+    {
+        return (int)number*sign;
+    }
+}
+
+
 // @lc code=end
 
