@@ -32,7 +32,7 @@
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
+    vector<vector<int>> threeSum_me(vector<int>& nums) {
         vector<vector<int>> sets;
         const int nsize = nums.size();
         if(nsize < 3)
@@ -76,6 +76,59 @@ public:
                     }
                 }
             }
+        }
+
+        return sets;
+    }
+
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> sets;
+        const int nsize = nums.size();
+        if(nsize < 3)
+            return sets;
+
+        // sort
+        sort(nums.begin(), nums.end());
+
+        if(nums[0] > 0 || nums[nsize-1] < 0)
+            return sets;
+
+        int i = 0;
+        while(i <= nsize-3)
+        {
+            const int target = -nums[i];
+            int left = i+1;
+            int right = nsize -1;
+            while(left < right)
+            {
+                int sum = nums[left]+nums[right];
+
+                if(sum == target)
+                {
+                    sets.push_back(vector<int>{nums[i], nums[left], nums[right]});
+
+                    int leftval = nums[left];
+                    while(left < right && nums[left] == leftval)
+                            ++left;
+
+                    int rightval = nums[right];
+                    while(left < right && nums[right] == rightval)
+                            --right;
+                }
+                else if(sum > target)
+                {
+                    --right;
+                }
+                else
+                {
+                    ++left;
+                }
+            }
+            while(i <= nsize-3 && nums[i] == nums[i+1])
+                    ++i;
+
+            ++i;
         }
 
         return sets;
