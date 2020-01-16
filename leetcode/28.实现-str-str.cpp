@@ -44,12 +44,25 @@ public:
     int strStr(string haystack, string needle) {
         if(needle.empty())
             return 0;
+        const int nsize = needle.size();
         
-        for(int i = 0; i < haystack.size(); ++i)
+        for(int i = 0, j = 0; i < haystack.size(); ++i)
         {
-            
+            if(haystack[i] == needle[j])
+            {
+                if(++j >= nsize)
+                {
+                    return i-j+1;
+                }
+            }
+            else
+            {
+                i -= j;
+                j = 0;
+            }
         }
         
+        return -1;
     }
 };
 // @lc code=end
